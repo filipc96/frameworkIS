@@ -1,0 +1,15 @@
+{
+    "name": "filipc/framework-is",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Filip.C",
+            "email": "cfilip002@gmail.com"
+        }
+    ],
+    "require": {}
+}
