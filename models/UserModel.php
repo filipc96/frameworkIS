@@ -1,6 +1,14 @@
 <?php
+namespace app\models;
 
-class UserModel
+use app\core\DBModel;
+
+class UserModel extends DBModel
 {
+    public $id;
+    public $full_name;
+    public $email;
+    public $password;
+    public $address;
 
 }

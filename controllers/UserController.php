@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\core\Router;
 use app\core\DBConnection;
 use app\core\Request;
+use app\models\UserModel;
 
 class UserController
 {
@@ -39,6 +40,13 @@ class UserController
         $password = $this->request->getOne("password");
         $address = $this->request->getOne("address");
 
+//        $model= new UserModel();
+//        $model->loadData($this->request->getAll());
+//
+//        echo "<pre>";
+//        var_dump($model);
+//        echo "</pre>";
+//        exit;
 
         $this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password) VALUES('$full_name', '$username', '$email', '$password', '$address')") or die("ERORR: " . mysqli_error());
         return $this->router->view("create", "main");
