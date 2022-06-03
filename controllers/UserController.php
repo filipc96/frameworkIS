@@ -29,26 +29,26 @@ class UserController
 
     //
     public function create(){
-        return $this->router->view("create", "main");
+        return $this->router->viewWithParams("create", "main", new UserModel());
     }
 
     //
     public function createProcess(){
-        $full_name = $this->request->getOne("full_name");
-        $username = $this->request->getOne("username");
-        $email = $this->request->getOne("email");
-        $password = $this->request->getOne("password");
-        $address = $this->request->getOne("address");
+//        $full_name = $this->request->getOne("full_name");
+//        $username = $this->request->getOne("username");
+//        $email = $this->request->getOne("email");
+//        $password = $this->request->getOne("password");
+//        $address = $this->request->getOne("address");
 
-//        $model= new UserModel();
-//        $model->loadData($this->request->getAll());
-//
+        $model= new UserModel();
+        $model->loadData($this->request->getAll());
+
 //        echo "<pre>";
 //        var_dump($model);
 //        echo "</pre>";
 //        exit;
 
-        $this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password) VALUES('$full_name', '$username', '$email', '$password', '$address')") or die("ERORR: " . mysqli_error());
+        $this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password) VALUES('$model->full_name', '$model->username', '$model->email', '$model->password', '$model->address')") or die("ERORR: " . mysqli_error());
         return $this->router->view("create", "main");
     }
 }

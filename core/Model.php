@@ -2,10 +2,15 @@
 
 namespace app\core;
 
-class Model
+abstract class Model
 {
     public $errors;
     public DBConnection $db;
+
+    public const RULE_EMAIL = 'email';
+    public const RULE_REQUIRED = 'required';
+
+    public abstract function rules() :array;
 
     public function __construct()
         {
@@ -20,5 +25,10 @@ class Model
                 }
             }
         }
+    }
+
+    public function validate(){
+
+
     }
 }

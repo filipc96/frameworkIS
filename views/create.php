@@ -1,3 +1,11 @@
+<?php
+//    /** @var $params \app\models\UserModel */
+//    if ($params->errors !== null ){
+//        var_dump($params->errors);
+//    }
+
+?>
+
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Create User</h5>

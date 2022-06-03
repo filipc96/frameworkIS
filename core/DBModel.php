@@ -3,7 +3,8 @@
 namespace app\core;
 
 
-class DBModel extends Model
+abstract class DBModel extends Model
 {
+    public abstract function rules() :array;
 
 }
