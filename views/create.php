@@ -1,6 +1,14 @@
-<?php
-    /** @var $params \app\models\UserModel */
+<link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet">
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="assets/vendor/toastr/toastr.min.js"></script>
 
+<?php
+    use app\core\Application;
+    /** @var $params \app\models\UserModel */
+    //Function for checking errors
     function checkError($error, $params){
         if (isset($params->errors[$error])){
             if ($params->errors[$error] !== null ){
@@ -12,6 +20,17 @@
             }
         }
     }
+    // Displaying flash message
+    if (Application::$app->session->getFlash("user")){
+        $msg = Application::$app->session->getFlash("user");
+        echo "<script>";
+        echo "$( document ).ready(function() {
+            toastr.success('$msg');
+            });";
+
+        echo"</script>";
+    }
+
 ?>
 
 <div class="card">
