@@ -1,26 +1,12 @@
 <?php
 namespace app\controllers;
 
-use app\core\Router;
-use app\core\DBConnection;
-use app\core\Request;
+use app\core\Controller;
 use app\core\Application;
 use app\models\UserModel;
 
-class UserController
+class UserController extends Controller
 {
-    public Router $router;
-    public DBConnection $db;
-    public Request $request;
-
-
-    //Konstruktor
-    public function __construct(){
-        $this->router = new Router();
-        $this->db = new DBConnection();
-        $this->request = new Request();
-    }
-
     //Lista usera
     public function home(){
         $result =$this->db->mysql->query("SELECT * FROM users") or die("ERORR: " . mysqli_error());
@@ -61,5 +47,10 @@ class UserController
 
         return $this->router->viewWithParams("create", "main", $model);
 
+    }
+
+    // Autorizacija, vraca niz sa mogucim roles-ima
+    public function authorize():array{
+        return ['Administrator','Superadministrator'];
     }
 }

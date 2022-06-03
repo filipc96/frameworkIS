@@ -1,3 +1,5 @@
+<!-- To fix -->
+
 <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet">
 <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
