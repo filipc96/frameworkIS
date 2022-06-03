@@ -41,14 +41,20 @@ class UserController
 //        $address = $this->request->getOne("address");
 
         $model= new UserModel();
-        $model->loadData($this->request->getAll());
 
+        $model->loadData($this->request->getAll());
+        $model->validate();
 //        echo "<pre>";
 //        var_dump($model);
 //        echo "</pre>";
 //        exit;
 
+        if ($model->errors !==null){
+            return $this->router->viewWithParams("create", "main",$model);
+        }
+
         $this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password) VALUES('$model->full_name', '$model->username', '$model->email', '$model->password', '$model->address')") or die("ERORR: " . mysqli_error());
         return $this->router->view("create", "main");
+
     }
 }

@@ -28,7 +28,18 @@ abstract class Model
     }
 
     public function validate(){
-
-
+        foreach ($this->rules() as $attribute=>$rules){
+            $attributeValue = $this->{$attribute};
+            foreach ($rules as $rule){
+                //Password Required
+                if($rule === self::RULE_REQUIRED && !$attributeValue ){
+                    $this->errors[$attribute][] = "Polje $attribute je obavezno";
+                }
+                // EMAIL validation
+                if($rule === self::RULE_EMAIL && !filter_var($attributeValue, FILTER_VALIDATE_EMAIL) ){
+                    $this->errors[$attribute][] = "Polje $attribute mora biti u dobrom formatu!";
+                }
+            }
+        }
     }
 }

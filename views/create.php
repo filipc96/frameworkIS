@@ -1,8 +1,13 @@
 <?php
-//    /** @var $params \app\models\UserModel */
-//    if ($params->errors !== null ){
-//        var_dump($params->errors);
-//    }
+    /** @var $params \app\models\UserModel */
+
+    if ($params->errors !== null ){
+        foreach ($params->errors['password'] as $errorMsg){
+            echo "<ul>";
+            echo "<li class='text-danger' >$errorMsg</li>";
+            echo "</ul>";
+        }
+    }
 
 ?>
 
