@@ -14,8 +14,10 @@ class UserModel extends DBModel
 
     public function rules():array{
         return [
-            "email"=>[self::RULE_EMAIL],
-            "password"=>[self::RULE_REQUIRED]
+            "email"=>[self::RULE_EMAIL,self::RULE_REQUIRED],
+            "password"=>[self::RULE_REQUIRED],
+            "full_name"=>[self::RULE_REQUIRED],
+            "username"=>[self::RULE_REQUIRED]
         ];
     }
 

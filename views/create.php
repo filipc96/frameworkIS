@@ -1,14 +1,17 @@
 <?php
     /** @var $params \app\models\UserModel */
 
-    if ($params->errors !== null ){
-        foreach ($params->errors['password'] as $errorMsg){
-            echo "<ul>";
-            echo "<li class='text-danger' >$errorMsg</li>";
-            echo "</ul>";
+    function checkError($error, $params){
+        if (isset($params->errors[$error])){
+            if ($params->errors[$error] !== null ){
+                foreach ($params->errors[$error] as $errorMsg){
+                    echo "<ul>";
+                    echo "<li class='text-danger' >$errorMsg</li>";
+                    echo "</ul>";
+                }
+            }
         }
     }
-
 ?>
 
 <div class="card">
@@ -20,18 +23,30 @@
             <div class="col-12">
                 <label for="inputNanme4" class="form-label">Your Name</label>
                 <input type="text" class="form-control" id="inputNanme4" name="full_name">
+                <?php
+                checkError("full_name",$params);
+                ?>
             </div>
             <div class="col-12">
                 <label for="inputNanme4" class="form-label">Username</label>
                 <input type="text" class="form-control" id="inputNanme4" name="username">
+                <?php
+                checkError("username",$params);
+                ?>
             </div>
             <div class="col-12">
                 <label for="inputEmail4" class="form-label">Email</label>
                 <input type="email" class="form-control" id="inputEmail4" name="email">
+                <?php
+                checkError("email",$params);
+                ?>
             </div>
             <div class="col-12">
                 <label for="inputPassword4" class="form-label">Password</label>
                 <input type="password" class="form-control" id="inputPassword4" name="password">
+                <?php
+                    checkError("password",$params);
+                ?>
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Address</label>
