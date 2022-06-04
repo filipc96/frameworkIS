@@ -18,8 +18,8 @@ class RegistrationModel extends DBModel
     }
 
 
-    public function create(){
-        
+    public function create($model){
+
     }
 
 }

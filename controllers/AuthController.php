@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\RegistrationModel;
 
 class AuthController extends Controller
 {
@@ -29,6 +30,17 @@ class AuthController extends Controller
     }
 
     public function registrationProcess(){
+        $model = new RegistrationModel();
+        $model->loadData($this->request->getAll());
+
+        $model->validate();
+
+        if ($model->errors !==null){
+
+        }
+
+        $model->create($model);
+        return $this->router->view("registration","auth");
     }
 
 
