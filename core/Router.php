@@ -26,10 +26,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback=== false){
-            http_response_code(404);
-            $callback="notFound";
-            echo $this->renderPartialView($callback);
-            exit;
+            $this->request->redirect("notFound");
         }
 
         if (is_string($callback)){
@@ -87,6 +84,7 @@ class Router
     }
 
     public function view($partialView,$layout){
+
         $layoutViewContent = $this->renderLayout($layout);
         $partialViewContent = $this->renderPartialView($partialView);
 

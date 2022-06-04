@@ -34,4 +34,8 @@ class Request
     public function getAll(){
         return $_REQUEST;
     }
+
+    public function redirect($path){
+        header("Location:$path");
+    }
 }
