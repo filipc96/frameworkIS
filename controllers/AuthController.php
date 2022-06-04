@@ -14,8 +14,23 @@ class AuthController extends Controller
 
     public function notFound(){
         http_response_code(404);
-        return $this->router->view("notFound","errr");
+        return $this->router->view("notFound","error");
     }
+
+    public function login(){
+        return $this->router->view("login","auth");
+    }
+
+    public function registration(){
+        return $this->router->view("registration","auth");
+    }
+
+    public function loginProcess(){
+    }
+
+    public function registrationProcess(){
+    }
+
 
     public function authorize(): array
     {
