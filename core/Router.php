@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\controllers\UserController;
+
 class Router
 {
     public Request $request;
@@ -35,7 +37,7 @@ class Router
         }
 
         if (is_array($callback)){
-            //var_dump($callback[0]);
+            //var_dump($callback);
             $callback[0] = new $callback[0]();
             return call_user_func($callback);
         }
@@ -60,15 +62,13 @@ class Router
             }
         }
 
-        //POGLEDATI!
         ob_start(); //Ciscenje da ne ostaje renderBody
         include_once __DIR__ . "/../views/$view.php";
         return ob_get_clean();
     }
 
     public function renderLayout($layout){
-        //POGLEDATI!
-        ob_start();//Ciscenje da ne ostaje renderBody
+        ob_start();
         include_once __DIR__ . "/../views/layouts/$layout.php";
         return ob_get_clean();
 

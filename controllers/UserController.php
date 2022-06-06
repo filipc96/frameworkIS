@@ -51,6 +51,6 @@ class UserController extends Controller
 
     // Autorizacija, vraca niz sa mogucim roles-ima
     public function authorize():array{
-        return ['Administrator','Superadministrator'];
+        return ['Administrator','Superadministrator', '']; // remove guest
     }
 }

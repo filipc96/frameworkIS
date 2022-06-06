@@ -21,4 +21,13 @@ class UserModel extends DBModel
         ];
     }
 
+    public function tableName()
+    {
+        // TODO: Implement tableName() method.
+    }
+
+    public function attributes(): array
+    {
+        // TODO: Implement attributes() method.
+    }
 }

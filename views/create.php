@@ -8,23 +8,26 @@
 <script src="assets/vendor/toastr/toastr.min.js"></script>
 
 <?php
-    use app\core\Application;
-    /** @var $params \app\models\UserModel */
-    //Function for checking errors
-    function checkError($error, $params){
-        if (isset($params->errors[$error])){
-            if ($params->errors[$error] !== null ){
-                foreach ($params->errors[$error] as $errorMsg){
-                    echo "<ul>";
-                    echo "<li class='text-danger' >$errorMsg</li>";
-                    echo "</ul>";
-                }
+
+use app\core\Application;
+/** @var $params \app\models\UserModel */
+
+//Function for checking errors
+function checkError($error, $params){
+    if (isset($params->errors[$error])){
+        if ($params->errors[$error] !== null ){
+            foreach ($params->errors[$error] as $errorMsg){
+                echo "<ul>";
+                echo "<li class='text-danger' >$errorMsg</li>";
+                echo "</ul>";
             }
         }
     }
-    // Displaying flash message
-    if (Application::$app->session->getFlash("user")){
-        $msg = Application::$app->session->getFlash("user");
+}
+
+function displayFlash($key){
+    if (Application::$app->session->getFlash($key)){
+        $msg = Application::$app->session->getFlash($key);
         echo "<script>";
         echo "$( document ).ready(function() {
             toastr.success('$msg');
@@ -32,6 +35,10 @@
 
         echo"</script>";
     }
+}
+
+displayFlash("user");
+
 
 ?>
 
