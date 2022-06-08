@@ -8,7 +8,9 @@ abstract class Model
     public DBConnection $db;
 
     public const RULE_EMAIL = 'email';
+    public const RULE_EMAIL_UNIQUE = 'email_unique';
     public const RULE_REQUIRED = 'required';
+
 
     public abstract function rules() :array;
 
@@ -21,7 +23,7 @@ abstract class Model
         if($data !==null){
             foreach($data as $key=>$value){
                 if(property_exists($this,$key)){
-                    $this->{$key} =$value; //POGLEDATI
+                    $this->{$key} =$value; //TODO: POGLEDATI
                 }
             }
         }
@@ -39,7 +41,24 @@ abstract class Model
                 if($rule === self::RULE_EMAIL && !filter_var($attributeValue, FILTER_VALIDATE_EMAIL) ){
                     $this->errors[$attribute][] = "Polje $attribute mora biti u dobrom formatu!";
                 }
+
+                if($rule === self::RULE_EMAIL_UNIQUE && !$this->findEmail($attributeValue) ){
+                    $this->errors[$attribute][] = "Polje $attribute mora biti jedinstveno!";
+                }
             }
         }
+    }
+
+    public function findEmail($email){
+        $sql = "SELECT * FROM users WHERE email ='$email'";
+
+        $result = $this->db->mysql->query($sql) or die();
+
+
+        if (mysqli_num_rows($result)>0){
+            return false;
+        }
+
+        return true;
     }
 }

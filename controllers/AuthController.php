@@ -20,6 +20,8 @@ class AuthController extends Controller
     }
 
     public function login(){
+        $model = new RegistrationModel();
+        $model->loadData($model->getAll());
         return $this->router->view("login","auth");
     }
 

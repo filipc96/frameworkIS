@@ -12,7 +12,7 @@ class RegistrationModel extends DBModel
 
     public function rules():array{
         return [
-            "email"=>[self::RULE_EMAIL,self::RULE_REQUIRED],
+            "email"=>[self::RULE_EMAIL,self::RULE_REQUIRED,self::RULE_EMAIL_UNIQUE ],
             "password"=>[self::RULE_REQUIRED]
         ];
     }
@@ -34,7 +34,7 @@ class RegistrationModel extends DBModel
 
         $id_user = $user_result->fetch_assoc()['id'];
 
-        $user_roles = $this->db->mysql->query("INSERT INTO user_roles(id_user, id_role, valid_from, valid_to,data_created,data_updated, user_created, user_updated,active) VALUES($id_user, $id_role, '$date', '$valid_to', '$date','$date',1,1,true)") or die("ERORR: " . mysqli_error());
+        $this->db->mysql->query("INSERT INTO user_roles(id_user, id_role, valid_from, valid_to,data_created,data_updated, user_created, user_updated,active) VALUES($id_user, $id_role, '$date', '$valid_to', '$date','$date',1,1,true)") or die("ERORR: " . mysqli_error());
 
     }
 
@@ -49,6 +49,9 @@ class RegistrationModel extends DBModel
         return [
           "email",
           "password",
+            "full_name",
+            "username",
+            "address",
             "data_created",
             "data_updated",
             "user_created",

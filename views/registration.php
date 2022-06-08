@@ -1,3 +1,23 @@
+<?php
+use app\core\Application;
+/** @var $params \app\models\UserModel */
+
+//Function for checking errors
+function checkError($error, $params){
+    if (isset($params->errors[$error])){
+        if ($params->errors[$error] !== null ){
+            foreach ($params->errors[$error] as $errorMsg){
+                echo "<ul>";
+                echo "<li class='text-danger' >$errorMsg</li>";
+                echo "</ul>";
+            }
+        }
+    }
+}
+?>
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -23,12 +43,18 @@
                                 <label for="yourEmail" class="form-label">Your Email</label>
                                 <input type="email" name="email" class="form-control" id="yourEmail" required>
                                 <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                                <?php
+                                checkError("email",$params);
+                                ?>
                             </div>
 
                             <div class="col-12">
                                 <label for="yourPassword" class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control" id="yourPassword" required>
                                 <div class="invalid-feedback">Please enter your password!</div>
+                                <?php
+                                checkError("password",$params);
+                                ?>
                             </div>
 
                             <div class="col-12">
