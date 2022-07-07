@@ -1,6 +1,6 @@
 <?php
 use app\core\Application;
-/** @var $params \app\models\UserModel */
+/** @var $params \app\models\RegistrationModel */
 
 //Function for checking errors
 function checkError($error, $params){

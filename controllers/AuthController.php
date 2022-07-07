@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\models\RegistrationModel;
+use app\models\UserModel;
 
 class AuthController extends Controller
 {
@@ -26,6 +27,7 @@ class AuthController extends Controller
     }
 
     public function registration(){
+
         return $this->router->view("registration","auth");
     }
 

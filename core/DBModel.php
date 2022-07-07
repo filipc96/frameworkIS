@@ -68,4 +68,46 @@ abstract class DBModel extends Model
 
     }
 
+    public function getAllWithStatment($where){
+        $table_name = $this->tableName();
+        $sqlString = "SELECT * FROM $table_name WHERE $where";
+
+        $db = $this->db->mysql;
+        $result = $db->query($sqlString);
+        $resultArr = [];
+
+        while($results = $result->fetch_assoc()){
+            array_push($resultArr, $results);
+        }
+
+        return $resultArr;
+
+    }
+
+    public function getOne($where){
+        $table_name = $this->tableName();
+        $sqlString = "SELECT * FROM $table_name WHERE $where";
+
+        $db = $this->db->mysql;
+        $result = $db->query($sqlString);
+
+
+        return $result->fetch_assoc();
+
+    }
+
+    public function delete($where){
+        $table_name = $this->tableName();
+        $sqlString = "DELETE FROM $table_name WHERE $where";
+
+        $db = $this->db->mysql;
+        $result = $db->query($sqlString);
+
+
+        return true;
+    }
+
+    public function update(){
+        //TODO: code here...
+    }
 }
