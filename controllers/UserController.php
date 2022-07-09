@@ -15,6 +15,10 @@ class UserController extends Controller
         return $this->router->viewWithParams("homeUser", "main", $params);
     }
 
+    public function userList(){
+        return $this->router->view("userList", "main");
+    }
+
     //
     public function create(){
         return $this->router->viewWithParams("create", "main", new UserModel());
@@ -51,6 +55,6 @@ class UserController extends Controller
 
     // Autorizacija, vraca niz sa mogucim roles-ima
     public function authorize():array{
-        return ['Administrator','Superadministrator', '']; // remove guest
+        return ['admin', 'korisnik']; // remove guest
     }
 }

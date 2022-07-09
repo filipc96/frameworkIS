@@ -21,14 +21,17 @@ abstract class DBModel extends Model
     public abstract function attributes() :array;
 
     public function create()
-    {   //TODO: Get fields bellow from form
-        $this->full_name = "";
-        $this->username = "";
-        $this->address = "";
+    {
+        if(Application::$app->session->getFlash("logged_in_user")){
+            return false;
+        }
+
 
         $this->data_created = date("Y-m-d H:i:s");
         $this->data_updated = date("Y-m-d H:i:s");
-        //TODO: Get field bellow from sessions
+//      $this->user_created = Application::$app->session->getFlash("logged_in_user")["id"];
+//      $this->user_updated = Application::$app->session->getFlash("logged_in_user")["id"];
+
         $this->user_created = 1;
         $this->user_updated = 1;
 
@@ -91,7 +94,6 @@ abstract class DBModel extends Model
         $db = $this->db->mysql;
         $result = $db->query($sqlString);
 
-
         return $result->fetch_assoc();
 
     }
@@ -100,6 +102,7 @@ abstract class DBModel extends Model
         $table_name = $this->tableName();
         $sqlString = "DELETE FROM $table_name WHERE $where";
 
+
         $db = $this->db->mysql;
         $result = $db->query($sqlString);
 
@@ -107,7 +110,38 @@ abstract class DBModel extends Model
         return true;
     }
 
-    public function update(){
-        //TODO: code here...
+    public function update($where){
+        if(Application::$app->session->getFlash("logged_in_user")){
+            return false;
+        }
+
+
+        $this->data_updated = date("Y-m-d H:i:s");
+//      $this->user_created = Application::$app->session->getFlash("logged_in_user")["id"];
+//      $this->user_updated = Application::$app->session->getFlash("logged_in_user")["id"];
+
+        $this->user_updated = 1;
+
+
+        $tableName = $this->tableName();
+        $attributes = $this->attributesForUpdate();
+        $values = array_map(fn($attr) => ":$attr", $attributes);//TODO: POGLEDAJ
+
+        $db = $this->db->mysql;
+        //TODO: POGELDAJ implode
+        $sqlString = "UPDATE $tableName SET " ;
+
+        foreach ($attributes as $attribute) {
+            $sqlString .= $attribute;
+            $sqlString.= '=';
+            $sqlString .= (is_numeric($this->{$attribute}) or is_bool($this->{$attribute})) ? $this->{$attribute} : '"' . $this->{$attribute} . '"' . ",";
+
+        }
+        $sqlString = substr_replace($sqlString, " ", -2);
+        $sqlString = $sqlString . $where . ";";
+
+        $db->query($sqlString) or die();
+
+        return true;
     }
 }

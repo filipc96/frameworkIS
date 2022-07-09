@@ -23,7 +23,7 @@ abstract class Model
         if($data !==null){
             foreach($data as $key=>$value){
                 if(property_exists($this,$key)){
-                    $this->{$key} =$value; //TODO: POGLEDATI
+                    $this->{$key} =$value;
                 }
             }
         }

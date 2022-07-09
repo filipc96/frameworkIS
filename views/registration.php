@@ -1,13 +1,12 @@
 <?php
 use app\core\Application;
-/** @var $params \app\models\RegistrationModel */
-
+/** @var $params \app\models\AuthModel */
 //Function for checking errors
 function checkError($error, $params){
     if (isset($params->errors[$error])){
         if ($params->errors[$error] !== null ){
             foreach ($params->errors[$error] as $errorMsg){
-                echo "<ul>";
+                echo "<ul style='list-style: none'>";
                 echo "<li class='text-danger' >$errorMsg</li>";
                 echo "</ul>";
             }
@@ -40,6 +39,28 @@ function checkError($error, $params){
 
                     <form method="post" action="registrationProcess" class="row g-3 needs-validation">
                             <div class="col-12">
+                                <label for="yourEmail" class="form-label">Your Full Name</label>
+                                <input type="text" name="full_name" class="form-control" id="yourFullName" required>
+                            <!-- <div class="invalid-feedback">Please enter a valid Email address!</div>-->
+
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourEmail" class="form-label">Your Address</label>
+                                <input type="text" name="address" class="form-control" id="yourAddress" required>
+                                <!--  <div class="invalid-feedback">Please enter a valid Email address!</div>-->
+
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourEmail" class="form-label">Your Username</label>
+                                <input type="text" name="username" class="form-control" id="yourUserName" required>
+                                <!--  <div class="invalid-feedback">Please enter a valid Email address!</div>-->
+
+                            </div>
+
+
+                            <div class="col-12">
                                 <label for="yourEmail" class="form-label">Your Email</label>
                                 <input type="email" name="email" class="form-control" id="yourEmail" required>
                                 <div class="invalid-feedback">Please enter a valid Email adddress!</div>
@@ -68,7 +89,7 @@ function checkError($error, $params){
                                 <button class="btn btn-primary w-100" type="submit">Create Account</button>
                             </div>
                             <div class="col-12">
-                                <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                                <p class="small mb-0">Already have an account? <a href="login">Log in</a></p>
                             </div>
                     </form>
 
