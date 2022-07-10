@@ -254,7 +254,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="logout">
+                        <a class="dropdown-item d-flex align-items-center" href="/logout">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -274,13 +274,13 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="home">
+            <a class="nav-link " href="/home">
                 <i class="bi bi-grid"></i>
                 <span>Home</span>
             </a>
         </li><!-- End Dashboard Nav -->
         <li class="nav-item">
-            <a class="nav-link" href="createUser">
+            <a class="nav-link" href="/createUser">
                 <i class="bi bi-journal-text"></i>
                 <span>Create</span>
             </a>

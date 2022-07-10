@@ -65,6 +65,7 @@ function checkError($error, $params){
                                 <input type="email" name="email" class="form-control" id="yourEmail" required>
                                 <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                                 <?php
+                                /** @var $params \app\models\AuthModel */
                                 checkError("email",$params);
                                 ?>
                             </div>
@@ -74,6 +75,7 @@ function checkError($error, $params){
                                 <input type="password" name="password" class="form-control" id="yourPassword" required>
                                 <div class="invalid-feedback">Please enter your password!</div>
                                 <?php
+                                /** @var $params \app\models\AuthModel */
                                 checkError("password",$params);
                                 ?>
                             </div>
