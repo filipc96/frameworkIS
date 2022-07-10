@@ -49,7 +49,7 @@ displayFlash("user");
         <!-- Vertical Form -->
         <form class="row g-3" method="post" action="createUserProcess">
             <div class="col-12">
-                <label for="inputNanme4" class="form-label">Your Name</label>
+                <label for="inputNanme4" class="form-label">Users Name</label>
                 <input type="text" class="form-control" id="inputNanme4" name="full_name">
                 <?php
                 checkError("full_name",$params);
@@ -80,9 +80,18 @@ displayFlash("user");
                 <label for="inputAddress" class="form-label">Address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
             </div>
+            <div class="row w-auto mb-3"><label class="col-12 col-form-label">Category</label>
+                <div class="col-sm-10"><select name="role" class="form-select" aria-label="Default select example">
+                        <option selected="">Select role</option>
+                        <option value="1">Editor</option>
+                        <option value="2">Delivery</option>
+                        <option value="3">User</option>
+                    </select></div>
+            </div>
+
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Create User</button>
+<!--                <button type="reset" class="btn btn-secondary">Reset</button>-->
             </div>
         </form><!-- Vertical Form -->
 

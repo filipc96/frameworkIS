@@ -44,3 +44,5 @@
     </tr>
     </tbody>
 </table>
+
+<a href="createUser" class="btn btn-primary" >Add User</a>

@@ -14,6 +14,7 @@ class Router
     }
 
     public function get($path,$callback){
+
         $this->routes['get'][$path] = $callback;
     }
 
@@ -24,11 +25,10 @@ class Router
     public function resolve(){
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
-
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback=== false){
-            $this->request->redirect("notFound");
+            $this->request->redirect("/notFound");
         }
 
         if (is_string($callback)){
@@ -37,7 +37,6 @@ class Router
         }
 
         if (is_array($callback)){
-            //var_dump($callback);
             $callback[0] = new $callback[0]();
             return call_user_func($callback);
         }
