@@ -83,9 +83,9 @@ displayFlash("user");
             <div class="row w-auto mb-3"><label class="col-12 col-form-label">Category</label>
                 <div class="col-sm-10"><select name="role" class="form-select" aria-label="Default select example">
                         <option selected="">Select role</option>
-                        <option value="1">Editor</option>
-                        <option value="2">Delivery</option>
-                        <option value="3">User</option>
+                        <option value="editor">Editor</option>
+                        <option value="delivery">Delivery</option>
+                        <option value="user">User</option>
                     </select></div>
             </div>
 

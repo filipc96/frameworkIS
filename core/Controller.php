@@ -29,17 +29,16 @@ abstract class Controller
 
         foreach($roles as $role){
             if ($user){
-                foreach($user->roles as $userRole){
-
+                    $userRole = $user->role;
                     if ($userRole===$role){
                         $roleAccess=true;
 
                     }
-                }
+
             }
 
 
-            if($role==="Guest"){
+            if($role==="guest"){
                 $guestAccess = true;
             }
 

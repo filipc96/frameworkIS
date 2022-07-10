@@ -2,7 +2,9 @@
 
 namespace app\models;
 
-class OrderModel extends Model
+use app\core\DBModel;
+
+class OrderModel extends DBModelModel
 {
 
     public function rules(): array

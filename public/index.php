@@ -22,14 +22,19 @@ $app->router->get('login',[AuthController::class,"login"]);
 $app->router->get('logout',[AuthController::class,"logout"]);
 
 $app->router->get('productmanagment/create',[ProductManagmentController::class,"create"]);
+$app->router->post('productmanagment/createProductProcess',[ProductManagmentController::class,"createProcess"]);
 
 
 $app->router->post('createUserProcess',[UserController::class,"createProcess"]);
 $app->router->get('homeUser',[UserController::class,"home"]);
 
-$app->router->get('userList','userList');
+$app->router->get('userList/customers',[UserController::class,"customersList"]);
+$app->router->get('userList/employees',[UserController::class,'employeesList']);
+$app->router->get('userList',[UserController::class,'employeesList']);
+
 
 $app->run();
+
 
 //echo "<pre>";
 //var_dump($app->router->request->getPath());

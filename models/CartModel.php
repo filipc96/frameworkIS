@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class CartModel extends Model
+class CartModel extends DBModel
 {
 
     public function rules(): array

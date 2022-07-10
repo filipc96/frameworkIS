@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="col-12">
-                            <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                            <button class="btn btn-primary w-100" type="submit">Log In</button>
                         </div>
                         <div class="col-12">
                             <p class="small mb-0">Don't have an account? <a href="registration">Register</a></p>

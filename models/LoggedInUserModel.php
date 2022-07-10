@@ -9,12 +9,13 @@ class LoggedInUserModel extends DBModel
     public $id;
     public $full_name;
     public $address;
-    public  array $roles=[];
+    public $username;
+    public $role;
 
 
     public function getUser($email){
         $result = $this->db->mysql->query(
-            "SELECT u.id, u.full_name,u.email,u.address,r.name from users u
+            "SELECT u.id, u.full_name,u.username,u.email,u.address,r.name from users u
 
                     INNER JOIN user_roles ur on u.id = ur.id_user
                     INNER JOIN roles r on ur.id_role= r.id
@@ -25,7 +26,7 @@ class LoggedInUserModel extends DBModel
             if($email!==null){
                 $this->loadData($row);
             }
-            array_push($this->roles, $row["name"]);
+            $this->role=$row["name"];
         }
 
         return $this;
@@ -50,6 +51,7 @@ class LoggedInUserModel extends DBModel
             "full_name",
             "username",
             "address",
+            "role",
             "data_created",
             "data_updated",
             "user_created",

@@ -28,7 +28,7 @@ class AuthModel extends DBModel
 
         $created_user = $model->create();//$this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password, data_created,data_updated, user_created, user_updated,active) VALUES('', '', '$model->email','', '$model->password', '$date','$date',1,1,true)") or die("ERORR: " . mysqli_error());
         //Dodavanje u role
-        $role_result = $this->db->mysql->query("SELECT id FROM roles WHERE name='korisnik'");
+        $role_result = $this->db->mysql->query("SELECT id FROM roles WHERE name='user'");
         $id_role = $role_result->fetch_assoc()["id"];
 
         $user_result = $this->db->mysql->query("SELECT id FROM users WHERE email='$model->email'");
