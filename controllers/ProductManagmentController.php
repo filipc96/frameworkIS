@@ -13,7 +13,7 @@ class ProductManagmentController extends Controller
 
     public function home()
     {
-        return $this->router->viewWithParams("productmanagment/home", "main", null);
+        return $this->router->view("productmanagment/productList", "main");
     }
 
 

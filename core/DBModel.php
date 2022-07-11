@@ -42,10 +42,9 @@ abstract class DBModel extends Model
 
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $values = array_map(fn($attr) => ":$attr", $attributes);//TODO: POGLEDAJ
+        $values = array_map(fn($attr) => ":$attr", $attributes);
 
         $db = $this->db->mysql;
-        //TODO: POGELDAJ implode
         $sqlString = "INSERT INTO $tableName (" . implode(',', $attributes) . ") VALUES (" . implode(',', $values) . ")";
 
         foreach ($attributes as $attribute) {
@@ -104,10 +103,19 @@ abstract class DBModel extends Model
         $table_name = $this->tableName();
         $sqlString = "DELETE FROM $table_name WHERE $where";
 
+        $db = $this->db->mysql;
+        $result = $db->query($sqlString) or die();
+
+
+        return true;
+    }
+
+    public function deactivate($where){
+        $table_name = $this->tableName();
+        $sqlString = "UPDATE $table_name SET active=0 WHERE $where;";
 
         $db = $this->db->mysql;
-        $result = $db->query($sqlString);
-
+        $result = $db->query($sqlString) or die();
 
         return true;
     }
@@ -119,15 +127,14 @@ abstract class DBModel extends Model
 
 
         $this->data_updated = date("Y-m-d H:i:s");
-//      $this->user_created = Application::$app->session->getFlash("logged_in_user")["id"];
-//      $this->user_updated = Application::$app->session->getFlash("logged_in_user")["id"];
-
+//        $this->user_updated = Application::$app->session->getFlash("logged_in_user");
         $this->user_updated = 1;
+        $this->active= true;
 
 
         $tableName = $this->tableName();
         $attributes = $this->attributesForUpdate();
-        $values = array_map(fn($attr) => ":$attr", $attributes);//TODO: POGLEDAJ
+        $values = array_map(fn($attr) => ":$attr", $attributes);
 
         $db = $this->db->mysql;
         //TODO: POGELDAJ implode
@@ -136,11 +143,12 @@ abstract class DBModel extends Model
         foreach ($attributes as $attribute) {
             $sqlString .= $attribute;
             $sqlString.= '=';
-            $sqlString .= (is_numeric($this->{$attribute}) or is_bool($this->{$attribute})) ? $this->{$attribute} : '"' . $this->{$attribute} . '"' . ",";
+            $sqlString .= (is_numeric($this->{$attribute}) or is_bool($this->{$attribute})) ? $this->{$attribute} .  ',' : '"' . $this->{$attribute} . '"' . ",";
 
         }
-        $sqlString = substr_replace($sqlString, " ", -2);
-        $sqlString = $sqlString . $where . ";";
+        $sqlString = substr_replace($sqlString, " ", -1);
+        $sqlString = $sqlString . ' WHERE ' . $where . ";";
+
 
         $db->query($sqlString) or die();
 

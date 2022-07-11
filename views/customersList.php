@@ -17,7 +17,8 @@ function getUserRows()
         $address = $user[3];
         $email = $user[4];
         $role = $user[5];
-        if ($role == "user") {
+        $active = $user[6];
+        if ($role == "user" and $active) {
             echo "       
                 <tr>
                     <th scope='row'>$id</th>
@@ -27,18 +28,17 @@ function getUserRows()
                     <td>$email</td>
                     <td>$role</td>
                     <td class='text-center'>
-                    <form action=''>
-                        <button class='btn btn-danger'>Delete</button> 
-                        <input type='hidden' value='$id'>
-                    </form>
-                    <form action=''>
-                        <button class='btn btn-success'>Edit</button>
-                        <input type='hidden' value='$id'>
-                    </form
-                    
-                    
-                    
+                        <form class='d-inline' method='post' action='/deleteProcess'>
+                            <button class='btn btn-danger'>Delete</button> 
+                            <input name='id' type='hidden' value='$id'>
+                        </form>
+                        <form class='d-inline' method='get' action='/edit'>
+                            <button class='btn btn-success d-inline'>Edit</button>
+                            <input name='id' type='hidden' value='$id'>
+                        </form
                     </td>   
+                    
+                    
                  </tr>
         ";
         }

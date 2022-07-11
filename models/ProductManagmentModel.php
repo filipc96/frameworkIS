@@ -46,10 +46,9 @@ class ProductManagmentModel extends DBModel
         ];
     }
 
+
     public function createProduct(ProductManagmentModel $model){
         $model->create();
-
-
     }
 
 }

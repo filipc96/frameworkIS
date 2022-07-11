@@ -10,8 +10,7 @@ use app\controllers\ProductManagmentController;
 
 $app = new Application();
 
-
-$app->router->get('admin',[UserController::class,"home"]);
+//Authoratization
 $app->router->get('accessDenied',[AuthController::class,"accessDenied"]);
 $app->router->get('notFound',[AuthController::class,"notFound"]);
 $app->router->get('createUser',[UserController::class,"create"]);
@@ -21,21 +20,28 @@ $app->router->post('loginProcess',[AuthController::class,"loginProcess"]);
 $app->router->get('login',[AuthController::class,"login"]);
 $app->router->get('logout',[AuthController::class,"logout"]);
 
+//Product managment routing
 $app->router->get('productmanagment/create',[ProductManagmentController::class,"create"]);
 $app->router->post('productmanagment/createProductProcess',[ProductManagmentController::class,"createProcess"]);
+$app->router->get('productmanagment/productList',[ProductManagmentController::class,"home"]);
 
-
+//User routing
+$app->router->get('admin',[UserController::class,"home"]);
 $app->router->post('createUserProcess',[UserController::class,"createProcess"]);
 $app->router->get('homeUser',[UserController::class,"home"]);
-
 $app->router->get('userList/customers',[UserController::class,"customersList"]);
 $app->router->get('userList/employees',[UserController::class,'employeesList']);
 $app->router->get('userList',[UserController::class,'employeesList']);
+$app->router->get('edit',[UserController::class,'edit']);
+$app->router->post('editProcess',[UserController::class,'editProcess']);
+$app->router->post('deleteProcess',[UserController::class,'deleteProcess']);
 
+
+//Category routing
 $app->router->get('categorymanagment/create',[CategoryController::class,"create"]);
 $app->router->post('categorymanagment/createCategoryProcess',[CategoryController::class,"createProcess"]);
 
-
+//Store routing
 $app->router->get('',[StoreController::class,"store"]);
 $app->router->get('store',[StoreController::class,"store"]);
 $app->router->get('cart',[StoreController::class,"cart"]);

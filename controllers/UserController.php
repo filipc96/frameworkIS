@@ -31,8 +31,12 @@ class UserController extends Controller
     {
         return $this->router->viewWithParams("/create", "main", new UserModel());
     }
+    public function edit()
+    {
+        return $this->router->viewWithParams("/edit", "main", null);
 
-    //
+    }
+
     public function createProcess()
     {
 //        $full_name = $this->request->getOne("full_name");
@@ -54,7 +58,7 @@ class UserController extends Controller
 
 
         if ($model->errors !== null) {
-            return $this->router->viewWithParams("create", "main", $model);
+            return $this->router->viewWithParams("/edit", "main", $model);
         }
 
         $this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password) VALUES('$model->full_name', '$model->username', '$model->email', '$model->address', '$model->password')") or die("ERORR: " . mysqli_error());
@@ -73,10 +77,43 @@ class UserController extends Controller
 
         Application::$app->session->setFlash("user", "Uspesno kreiran");
 
-        return $this->router->viewWithParams("create", "main", $model);
+        return $this->router->view("/edit", "main");
+    }
+    public function editProcess()
+    {
+        $model = new UserModel();
 
+        $model->loadData($this->request->getAll());
+
+//        $model->validate();
+
+//        if ($model->errors !==null){
+//            Application::$app->session->setFlash("error","Neuspesno editovan user!");
+//            return $this->router->viewWithParams("/edit","main",$model);
+//
+//        }
+        $idToUpdate = $model->id;
+        $model->update("id=$idToUpdate");
+
+
+        return $this->router->viewWithParams("/edit", "main", $model);
 
     }
+
+    public function deleteProcess()
+    {
+        $model = new UserModel();
+
+        $model->loadData($this->request->getAll());
+
+        $idToUpdate = $model->id;
+
+        $model->deactivate("id=$idToUpdate");
+
+
+        $this->request->redirect('/userList');
+    }
+
 
     // Autorizacija, vraca niz sa mogucim roles-ima
     public function authorize(): array
