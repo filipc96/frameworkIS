@@ -10,10 +10,10 @@ class UserController extends Controller
 {
     public function home()
     {
-        $result = $this->db->mysql->query("SELECT * FROM users") or die("ERORR: " . mysqli_error());
-        $params = $result->fetch_assoc();
+//        $result = $this->db->mysql->query("SELECT * FROM users") or die("ERORR: " . mysqli_error());
+//        $params = $result->fetch_assoc();
 
-        return $this->router->viewWithParams("homeUser", "main", $params);
+        return $this->router->view("home", "main");
     }
 
     public function employeesList()
@@ -81,6 +81,6 @@ class UserController extends Controller
     // Autorizacija, vraca niz sa mogucim roles-ima
     public function authorize(): array
     {
-        return ['admin', 'guest']; // remove guest
+        return ['admin']; // remove guest
     }
 }

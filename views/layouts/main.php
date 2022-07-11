@@ -29,12 +29,6 @@
     <!-- Template Main CSS File -->
     <link href="/../assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: NiceAdmin - v2.2.2
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -43,7 +37,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index" class="logo d-flex align-items-center">
+        <a href="/store" class="logo d-flex align-items-center">
             <img src="/../assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">E-Store</span>
         </a>
@@ -98,6 +92,12 @@
             <a class="nav-link" href="/productmanagment/create">
                 <i class="bi bi-journal-text"></i>
                 <span>Create Product</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/categorymanagment/create">
+                <i class="bi bi-journal-text"></i>
+                <span>Create Category</span>
             </a>
         </li>
         <li class="nav-item">

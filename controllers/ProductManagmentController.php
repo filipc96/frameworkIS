@@ -11,7 +11,6 @@ use app\models\UserModel;
 class ProductManagmentController extends Controller
 {
 
-    //Lista usera
     public function home()
     {
         return $this->router->viewWithParams("productmanagment/home", "main", null);
@@ -40,7 +39,6 @@ class ProductManagmentController extends Controller
     {
         $model = new ProductManagmentModel();
         $model->loadData($this->request->getAll());
-
         $model->validate();
 
         if ($model->errors !==null){
@@ -49,7 +47,7 @@ class ProductManagmentController extends Controller
 
         }
         if($model->createProduct($model)){
-            Application::$app->session->setFlash("error","Uspesno kreiran produkt!");
+            Application::$app->session->setFlash("success","Uspesno kreiran produkt!");
         }
         return $this->router->viewWithParams("productmanagment/create","main",null);
 
@@ -70,7 +68,7 @@ class ProductManagmentController extends Controller
     // Autorizacija, vraca niz sa mogucim roles-ima
     public function authorize(): array
     {
-        return ['admin', 'guest']; // remove guest
+        return ['admin', 'editor']; // remove guest
     }
 
 

@@ -30,7 +30,7 @@ abstract class Controller
         foreach($roles as $role){
             if ($user){
                     $userRole = $user->role;
-                    if ($userRole===$role){
+                if ($userRole===$role){
                         $roleAccess=true;
 
                     }

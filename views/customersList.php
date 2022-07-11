@@ -26,8 +26,20 @@ function getUserRows()
                     <td>$address</td>
                     <td>$email</td>
                     <td>$role</td>
-                    <td class='text-center'><button class='btn btn-danger'>Delete</button>  <button class='btn btn-success'>Edit</button></td>   </tr>
-                <tr>  
+                    <td class='text-center'>
+                    <form action=''>
+                        <button class='btn btn-danger'>Delete</button> 
+                        <input type='hidden' value='$id'>
+                    </form>
+                    <form action=''>
+                        <button class='btn btn-success'>Edit</button>
+                        <input type='hidden' value='$id'>
+                    </form
+                    
+                    
+                    
+                    </td>   
+                 </tr>
         ";
         }
     }
@@ -61,4 +73,4 @@ function getUserRows()
     </tbody>
 </table>
 
-<a href="createUser" class="btn btn-primary">Add User</a>
+<a href="/createUser" class="btn btn-primary">Add User</a>

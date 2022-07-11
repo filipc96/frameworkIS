@@ -84,7 +84,7 @@ class AuthController extends Controller
     public function authorize(): array
     {
         return [
-            "guest"
+            "guest",
         ];
     }
 }

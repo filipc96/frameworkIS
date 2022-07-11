@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
+use app\controllers\CategoryController;
+use app\controllers\StoreController;
 use app\core\application;
 use app\controllers\UserController;
 use app\controllers\ProductManagmentController;
@@ -9,9 +11,7 @@ use app\controllers\ProductManagmentController;
 $app = new Application();
 
 
-$app->router->get('home','home');
-$app->router->get('index','home');
-$app->router->get('','home');
+$app->router->get('admin',[UserController::class,"home"]);
 $app->router->get('accessDenied',[AuthController::class,"accessDenied"]);
 $app->router->get('notFound',[AuthController::class,"notFound"]);
 $app->router->get('createUser',[UserController::class,"create"]);
@@ -31,6 +31,14 @@ $app->router->get('homeUser',[UserController::class,"home"]);
 $app->router->get('userList/customers',[UserController::class,"customersList"]);
 $app->router->get('userList/employees',[UserController::class,'employeesList']);
 $app->router->get('userList',[UserController::class,'employeesList']);
+
+$app->router->get('categorymanagment/create',[CategoryController::class,"create"]);
+$app->router->post('categorymanagment/createCategoryProcess',[CategoryController::class,"createProcess"]);
+
+
+$app->router->get('',[StoreController::class,"store"]);
+$app->router->get('store',[StoreController::class,"store"]);
+$app->router->get('cart',[StoreController::class,"cart"]);
 
 
 $app->run();

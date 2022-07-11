@@ -10,6 +10,7 @@
 <?php
 
 use app\core\Application;
+use app\models\CategoryModel;
 
 /** @var $params \app\models\UserModel */
 
@@ -41,6 +42,23 @@ function displayFlash($key)
 }
 
 displayFlash("user");
+
+function getCategoriesList(){
+    $model = new CategoryModel;
+    $categoryList = $model->getAll();
+
+    foreach ($categoryList as $category){
+        $id = $category["id"];
+        $category_name = $category["category_name"];
+        echo "
+            <option value='$id''>$category_name</option>
+        ";
+
+    }
+
+
+}
+
 
 
 ?>
@@ -94,9 +112,10 @@ displayFlash("user");
     <div class="row mb-3"><label class="col-sm-2 col-form-label">Category</label>
         <div class="col-sm-10"><select name="category" class="form-select" aria-label="Default select example">
                 <option selected="">Select category</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <?php
+                getCategoriesList()
+
+                ?>
             </select></div>
         <?php
         if (isset($params)) {

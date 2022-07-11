@@ -45,8 +45,7 @@ class Router
     }
 
     public function renderPartialView($view){
-        //POGLEDATI!
-        ob_start(); //Ciscenje da ne ostaje renderBody
+        ob_start();
         include_once __DIR__ . "/../views/$view.php";
         return ob_get_clean();
     }
@@ -54,14 +53,12 @@ class Router
     public function renderPartialViewWithParams($view,$params){
 
         if ($params !== null){
-            //POGLEDATI
             foreach ($params as $key => $value){
-                //POGLEDATI
                 $$key = $value;
             }
         }
 
-        ob_start(); //Ciscenje da ne ostaje renderBody
+        ob_start();
         include_once __DIR__ . "/../views/$view.php";
         return ob_get_clean();
     }
@@ -77,7 +74,6 @@ class Router
         $layoutViewContent = $this->renderLayout($layout);
         $partialViewContent = $this->renderPartialViewWithParams($partialView,$params);
 
-        //Menjamo renderBody u layoutu sa sadrzajem
         $view = str_replace("{{ renderBody }}",$partialViewContent,$layoutViewContent);
         echo $view;
     }
@@ -87,7 +83,6 @@ class Router
         $layoutViewContent = $this->renderLayout($layout);
         $partialViewContent = $this->renderPartialView($partialView);
 
-        //Menjamo renderBody u layoutu sa sadrzajem
         $view = str_replace("{{ renderBody }}",$partialViewContent,$layoutViewContent);
         echo $view;
     }

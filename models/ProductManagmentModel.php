@@ -16,10 +16,10 @@ class ProductManagmentModel extends DBModel
     public function rules(): array
     {
         return [
-//            "productName" => [self::RULE_REQUIRED],
-//            "price" => [self::RULE_REQUIRED],
-//            "quantity" => [self::RULE_REQUIRED],
-//            "category" => [self::RULE_REQUIRED]
+            "product_name" => [self::RULE_REQUIRED],
+            "price" => [self::RULE_REQUIRED],
+            "quantity" => [self::RULE_REQUIRED],
+            "category" => [self::RULE_REQUIRED]
         ];
 
     }

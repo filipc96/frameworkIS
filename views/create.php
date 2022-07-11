@@ -44,7 +44,7 @@ displayFlash("user");
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Create User</h5>
+        <h1>Create User</h1>
 
         <!-- Vertical Form -->
         <form class="row g-3" method="post" action="createUserProcess">
