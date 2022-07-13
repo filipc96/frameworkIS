@@ -2,7 +2,6 @@
 
 use app\models\CategoryModel;
 use app\models\ProductManagmentModel;
-use app\models\UserModel;
 
 function getProductRows()
 {
@@ -12,13 +11,14 @@ function getProductRows()
 
     foreach ($productList as $product){
         $product_id = $product["id"];
+
         $product_name = $product["product_name"];
         $price = $product["price"];
         $quantity = $product["quantity"];
         $active= $product["active"];
         $category = $product["category"];
-        $catgoryModel = new CategoryModel();
-        $category_name = $catgoryModel->getOne("id = $category")["category_name"];
+        $categoryModel = new CategoryModel();
+        $category_name = $categoryModel->getOne("id = $category")["category_name"];
         if ($active) {
             echo "       
                 <tr>
@@ -28,11 +28,11 @@ function getProductRows()
                     <td>$quantity</td>
                     <td>$category_name</td>
                     <td class='text-center'>
-                        <form class='d-inline' method='post' action='/deleteProcess'>
+                        <form class='d-inline' method='post' action='/productmanagment/deleteProcess'>
                             <button class='btn btn-danger'>Delete</button> 
                             <input name='id' type='hidden' value='$product_id'>
                          </form>
-                        <form class='d-inline' action='/edit' method='get'>
+                        <form class='d-inline' action='/productmanagment/edit' method='get'>
                             <button class='btn btn-success'>Edit</button>
                             <input name='id' type='hidden' value='$product_id'>
                         </form

@@ -18,7 +18,6 @@ class ProductManagmentModel extends DBModel
         return [
             "product_name" => [self::RULE_REQUIRED],
             "price" => [self::RULE_REQUIRED],
-            "quantity" => [self::RULE_REQUIRED],
             "category" => [self::RULE_REQUIRED]
         ];
 
@@ -46,9 +45,35 @@ class ProductManagmentModel extends DBModel
         ];
     }
 
+    public function attributesForUpdate(): array
+    {
+        return [
+            "product_name",
+            "price",
+            "quantity",
+            "description",
+            "category",
+            "img_path",
+            "data_updated",
+            "user_updated",
+            "active"
+        ];
+    }
 
     public function createProduct(ProductManagmentModel $model){
         $model->create();
+    }
+
+    public function editProduct(ProductManagmentModel $model)
+    {
+
+        $idToUpdate = $model->id;
+        $model->update("id=$idToUpdate");
+    }
+
+    public function deactivateProduct(ProductManagmentModel $model){
+        $idToUpdate = $model->id;
+        $model->deactivate("id=$idToUpdate");
     }
 
 }

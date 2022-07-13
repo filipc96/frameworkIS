@@ -26,7 +26,7 @@ class AuthModel extends DBModel
         $valid_to = date("Y-m-d H:i:s",strtotime('+ 10 years'));
         $model->password = password_hash($model->password,PASSWORD_DEFAULT);
 
-        $created_user = $model->create();//$this->db->mysql->query("INSERT INTO users(full_name, username, email, address, password, data_created,data_updated, user_created, user_updated,active) VALUES('', '', '$model->email','', '$model->password', '$date','$date',1,1,true)") or die("ERORR: " . mysqli_error());
+        $created_user = $model->create();
         //Dodavanje u role
         $role_result = $this->db->mysql->query("SELECT id FROM roles WHERE name='user'");
         $id_role = $role_result->fetch_assoc()["id"];

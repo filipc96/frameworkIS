@@ -24,6 +24,11 @@ class Session
     public function set($key,$value){
             $_SESSION[$key] = $value;
     }
+
+    public function setAtIndex($key,$value, $index){
+        $_SESSION[$key][$index] = $value;
+    }
+
     public function setFlash($key,$message){
         $_SESSION[self::FLASH_KEY][$key]=[
             'remove'=>false,

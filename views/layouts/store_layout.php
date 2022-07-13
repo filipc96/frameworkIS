@@ -32,6 +32,20 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
+                        <?php
+
+                        use app\core\Application;
+                        use app\models\CategoryModel;
+                        $categoryModel = new CategoryModel();
+                        $categoryList = $categoryModel->getAll();
+                        foreach ($categoryList as $category){
+                            $category_name = $category['category_name'];
+                            echo "<li><a class='dropdown-item' href='#'>$category_name</a></li>";
+
+                        }
+
+
+                        ?>
 
                     </ul>
                 </li>
@@ -39,11 +53,22 @@
                 <a class="btn btn-outline-dark" href="/cart">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
+
+                    <?php
+                        if (Application::$app->session->get('cart')){
+                            $count=count(Application::$app->session->get('cart'));
+
+                            echo "<span class='badge bg-dark text-white ms-1 rounded-pill'>$count</span>";
+                        }else{
+                            echo "<span class='badge bg-dark text-white ms-1 rounded-pill'>0</span>";
+                        }
+
+                    ?>
                 </a>
             <div class="ms-3 p-0">
                 <?php
 
-                $user = \app\core\Application::$app->session->get("logged_in_user");
+                $user = Application::$app->session->get("logged_in_user");
                 if($user !=null){
                     $uname =$user->username;
 

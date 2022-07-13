@@ -149,7 +149,6 @@ abstract class DBModel extends Model
         $sqlString = substr_replace($sqlString, " ", -1);
         $sqlString = $sqlString . ' WHERE ' . $where . ";";
 
-
         $db->query($sqlString) or die();
 
         return true;

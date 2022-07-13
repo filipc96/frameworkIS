@@ -33,7 +33,7 @@ function getProductsCards(){
                 </div>
                 <!-- Product actions-->
                 <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
-                    <form>
+                    <form action='addtocart' action='get' >
                          <div class='text-center'><button type='submit' name='addToCart' class='btn btn-outline-dark mt-auto'>Add to cart</button></div>
                          <input type='hidden' name='product_id' value='$product_id'>
                     </form>
@@ -56,18 +56,6 @@ function getProductsCards(){
 
         <?php
             getProductsCards();
-
-            if(isset($_POST["addToCart"])){
-                if(Application::$app->session->get("cart")){
-                    $product_id_list = Application::$app->session->get("cart");
-                    Application::$app->session->remove("cart");
-                    Application::$app->session->set('cart',$product_id_list);
-                }else{
-                    $product_id_list =[];
-                    $product_id_list.array_push($_POST['product_id']);
-                    Application::$app->session->set('cart',$product_id_list);
-                }
-            }
         ?>
 
     </div>

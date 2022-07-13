@@ -21,8 +21,6 @@
     <link href="/../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="/../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="/../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
@@ -77,8 +75,8 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="/home">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link " href="/admin">
+                <i class="bi bi-bar-chart-line"></i>
                 <span>Home</span>
             </a>
         </li>
@@ -102,10 +100,17 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/userList">
-                <i class="bi bi-journal-text"></i>
+                <i class="bi bi-layout-text-window-reverse"></i>
                 <span>User List</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/productmanagment/productList">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <span>Product List</span>
+            </a>
+        </li>
+
     </ul>
 
 
@@ -121,13 +126,9 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/../assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="/../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/../assets/vendor/chart.js/chart.min.js"></script>
-<script src="/../assets/vendor/echarts/echarts.min.js"></script>
-<script src="/../assets/vendor/quill/quill.min.js"></script>
 <script src="/../assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="/../assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="/../assets/vendor/php-email-form/validate.js"></script>
 
 <link href="/../assets/vendor/php-email-form/toastr/toastr.min.css" rel="stylesheet">

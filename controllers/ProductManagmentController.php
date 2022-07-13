@@ -26,12 +26,13 @@ class ProductManagmentController extends Controller
 
     public function edit()
     {
-        return $this->router->viewWithParams("productmanagment/edit", "main", new UserModel());
+
+        return $this->router->viewWithParams("productmanagment/edit", "main", null);
     }
 
     public function delete()
     {
-        return $this->router->viewWithParams("productmanagment/delete", "main", new UserModel());
+        return $this->router->viewWithParams("productmanagment/delete", "main", new ProductManagmentModel());
     }
 
     //
@@ -54,14 +55,34 @@ class ProductManagmentController extends Controller
     }
 
     public function editProcess()
-    {
+    {   $model = new ProductManagmentModel();
+
+        $model->loadData($this->request->getAll());
+        $model->validate();
+        var_dump($model->id);
+
+        if ($model->errors !==null){
+            Application::$app->session->setFlash("error","Neuspesno editovan user!");
+            return $this->router->viewWithParams("productmanagment/edit","main",$model);
+
+        }
+
+        if($model->editProduct($model)){
+            Application::$app->session->setFlash("success","Uspesno editovan produkt!");
+        }
+
+
         return $this->router->viewWithParams("productmanagment/edit", "main", null);
 
     }
 
     public function deleteProcess()
     {
-        return $this->router->viewWithParams("productmanagment/delete", "main", null);
+        $model = new ProductManagmentModel();
+        $model->loadData($this->request->getAll());
+        $model->deactivateProduct($model);
+
+        $this->request->redirect('/productmanagment/productList');
 
     }
 

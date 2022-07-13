@@ -57,7 +57,7 @@ class AuthController extends Controller
         $loggedInUserModel = new LoggedInUserModel();
         Application::$app->session->set("logged_in_user", $loggedInUserModel->getUser($model->email));
 
-        $this->request->redirect("/home");
+        $this->request->redirect("/");
 
     }
 
